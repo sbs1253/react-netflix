@@ -42,15 +42,15 @@ h2 {
   justify-content: center;
   visibility: hidden;
 }
-.arrow {
+/* .arrow {
   transition: 400ms all ease-in-out;
-}
+} */
 .arrow:hover {
   transition: 400ms all ease-in-out;
   transform: scale(1.5);
 }
 .slider:hover .slider__arrow-left {
-  transition: 400ms all ease-in-out;
+  /* transition: 400ms all ease-in-out; */
   visibility: visible;
 }
 .slider:hover .slider__arrow-right {
@@ -59,7 +59,7 @@ h2 {
 }
 .slider__arrow-left:hover {
   background: rgba(20, 20, 20, 0.5);
-  transition: 400ms all ease-in-out;
+  /* transition: 400ms all ease-in-out; */
 }
 .slider__arrow-right:hover {
   background: rgba(20, 20, 20, 0.5);
