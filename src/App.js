@@ -1,42 +1,30 @@
+import { Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
-import requests from './api/requests';
-import Banner from './component/Banner';
 import Footer from './component/Footer';
 import Nav from './component/Nav';
-import Row from './component/Row';
+import MainPage from './Pages/MainPage';
+import DetailPage from './Pages/DetailPage';
+import SearchPage from './Pages/SearchPage';
 
+const Layout = () => {
+  return (
+    <div>
+      <Nav />
+      <Outlet />
+      <Footer />
+    </div>
+  );
+};
 function App() {
   return (
     <div className='app'>
-      <Nav />
-      <Banner />
-      <Row
-        title='NETFLIX ORIGINALS'
-        id='NO'
-        fetchUrl={requests.fetchNetflixOriginals}
-        isLargeRow
-      ></Row>
-      <Row
-        title='Action Movies'
-        id='AM'
-        fetchUrl={requests.fetchActionMovies}
-      ></Row>{' '}
-      <Row
-        title='Comedy Movies'
-        id='CM'
-        fetchUrl={requests.fetchComedyMovies}
-      ></Row>{' '}
-      <Row
-        title='Horror Movies'
-        id='HM'
-        fetchUrl={requests.fetchHorrorMovies}
-      ></Row>{' '}
-      <Row
-        title='Romance Movies'
-        id='RM'
-        fetchUrl={requests.fetchRomanceMovies}
-      ></Row>
-      <Footer></Footer>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<MainPage />} />
+          <Route path=':moveId' element={<DetailPage />} />
+          <Route path='search' element={<SearchPage />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

@@ -1,8 +1,12 @@
 import axios from '../api/axios';
 import React, { useEffect, useState } from 'react';
 import './Row.css';
+import MovieModal from './MovieModal';
+
 export default function Row({ title, id, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [movieSelected, setMovieSelected] = useState({});
   useEffect(() => {
     fetchMovieData();
   }, []);
@@ -12,6 +16,12 @@ export default function Row({ title, id, fetchUrl, isLargeRow }) {
     // console.log(request);
     return request;
   };
+  const handleClick = (movie) => {
+    setModalOpen(true);
+    setMovieSelected(movie);
+    console.log(movieSelected);
+  };
+
   return (
     <section className='row'>
       {/* title */}
@@ -36,6 +46,7 @@ export default function Row({ title, id, fetchUrl, isLargeRow }) {
               }`}
               loading='lazy'
               alt={movie.name}
+              onClick={() => handleClick(movie)}
             />
           ))}
         </div>
@@ -48,6 +59,12 @@ export default function Row({ title, id, fetchUrl, isLargeRow }) {
           <span className='arrow'>{'>'}</span>
         </div>
       </div>
+      {modalOpen && (
+        <MovieModal {...movieSelected} setModalOpen={setModalOpen} />
+        // Component 구조분해 할당
+        // prop로 넘겼을 경우는 객체 key값으로 받을 수 있게 분해됨
+        // * 현재파일에서 콘솔로 확인했을때는 분해되지 않아서 헷갈렸음
+      )}
     </section>
   );
 }
