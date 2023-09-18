@@ -1,7 +1,7 @@
 import React from 'react';
 
 function DetailPage() {
-  return <div>index</div>;
+  return <div></div>;
 }
 
 export default DetailPage;

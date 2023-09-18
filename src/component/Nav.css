@@ -22,3 +22,13 @@ nav {
   right: 40px;
   width: 50px;
 }
+.nav__input {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  background-color: #000000c7;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  border: none;
+}
