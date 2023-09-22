@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../api/axios';
 import { useLocation } from 'react-router-dom';
-
+import './SearchPage.css';
 function SearchPage() {
   const [searchResult, setSearchResult] = useState([]);
 
@@ -23,8 +23,8 @@ function SearchPage() {
       const request = await axios.get(
         `/search/multi?include_adult=false&query=${searchTerm}`
       );
-      console.log(request);
       setSearchResult(request.data.results);
+      // console.log(searchResult);
     } catch (error) {
       console.log(error);
     }
@@ -36,11 +36,12 @@ function SearchPage() {
         {searchResult.map((movie) => {
           if (movie.backdrop_path !== null && movie.media_type !== 'person') {
             const movieImageUrl =
-              'https://image/tmdb.org/t/p/w500' + movie.backdrop_path;
+              'https://image.tmdb.org/t/p/w500' + movie.backdrop_path;
+            // console.log(movieImageUrl);
             return (
               <div className='movie'>
                 <div className='movie__colimn-poster'>
-                  <img src='{movieImageUrl}' alt='' className='movie__poster' />
+                  <img src={movieImageUrl} alt='' className='movie__poster' />
                 </div>
               </div>
             );
@@ -56,7 +57,7 @@ function SearchPage() {
     );
   };
 
-  return <div></div>;
+  return renderSearchResults();
 }
 
 export default SearchPage;
