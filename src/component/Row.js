@@ -19,7 +19,7 @@ export default function Row({ title, id, fetchUrl, isLargeRow }) {
   const handleClick = (movie) => {
     setModalOpen(true);
     setMovieSelected(movie);
-    console.log(movieSelected);
+    // console.log(movieSelected);
   };
 
   return (

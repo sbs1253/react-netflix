@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../api/axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './SearchPage.css';
 import useDebounce from '../../hook/useDebounce';
 function SearchPage() {
   const [searchResult, setSearchResult] = useState([]);
-
+  const navigator = useNavigate();
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
   };
@@ -14,7 +14,6 @@ function SearchPage() {
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   // console.log(useQuery().get('q'));
   // console.log(debouncedSearchTerm);
-
   useEffect(() => {
     if (debouncedSearchTerm) {
       fetchSearchResult(debouncedSearchTerm);
@@ -43,7 +42,12 @@ function SearchPage() {
 
             return (
               <div className='movie' key={movie.id}>
-                <div className='movie__colimn-poster'>
+                <div
+                  className='movie__colimn-poster'
+                  onClick={() => {
+                    navigator(`/${movie.id}`);
+                  }}
+                >
                   <img src={movieImageUrl} alt='' className='movie__poster' />
                 </div>
               </div>

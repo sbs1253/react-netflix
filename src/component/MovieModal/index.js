@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './MovieModal.css';
 import movieTrailer from 'movie-trailer';
+import useOnClickOutside from '../../hook/useOnClickOutside';
 function MovieModal({
   backdrop_path,
   title,
@@ -12,15 +13,17 @@ function MovieModal({
   setModalOpen,
 }) {
   const [trailerId, setTrailerId] = useState('');
+  const ref = useRef();
+  useOnClickOutside(ref, () => setModalOpen(false));
   useEffect(() => {
     if (trailerId) {
       setTrailerId('');
+      // trailerId가 있으면 영상 x
     } else {
       movieTrailer(title || name || '')
         .then((url) => {
-          console.log('url', url);
+          // console.log('url', url);
           const urlParams = new URLSearchParams(new URL(url).search);
-          console.log('urlParams.get(v)', urlParams.get('v'));
           setTrailerId(urlParams.get('v'));
         })
         .catch((error) => console.log('error', error));
@@ -30,7 +33,7 @@ function MovieModal({
   return (
     <div className='presentation'>
       <div className='wrapper-modal'>
-        <div className='modal'>
+        <div className='modal' ref={ref}>
           <span className='modal-close' onClick={() => setModalOpen(false)}>
             X
           </span>
