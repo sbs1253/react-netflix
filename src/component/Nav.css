@@ -16,11 +16,13 @@ nav {
 
 .nav__logo {
   width: 100px;
+  cursor: pointer;
 }
 .nav__user {
   position: fixed;
   right: 40px;
   width: 50px;
+  border-radius: 10px;
 }
 .nav__input {
   position: fixed;

@@ -15,6 +15,7 @@ function MovieModal({
   const [trailerId, setTrailerId] = useState('');
   const ref = useRef();
   useOnClickOutside(ref, () => setModalOpen(false));
+  // movieModal이 띄워졌을때 실행되므로 ref 는 그때 할당됌
   useEffect(() => {
     if (trailerId) {
       setTrailerId('');

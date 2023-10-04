@@ -29,7 +29,7 @@ const Nav = () => {
         alt='netflix logo'
         src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png'
         className='nav__logo'
-        onClick={() => window.location.reload()}
+        onClick={() => (window.location.href = '/')}
       />
       <input
         type='text'
@@ -40,8 +40,9 @@ const Nav = () => {
       ></input>
       <img
         alt='user img'
-        src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+        src='https://occ-0-4796-988.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41'
         className='nav__user'
+        onClick={() => (window.location.href = '/')}
       />
     </nav>
   );
